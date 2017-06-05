@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+     <style>
+         html, body {
+             height: 100%;
+         }
+
+         body {
+             background: url(http://www.history.com/s3static/video-thumbnails/AETN-History_VMS/21/201/tdih-jan05-HD.jpg);
+             background-size: cover;
+             background-repeat: no-repeat;
+         }
+         table{
+             color:black;
+         }
+     </style>
+</head>
+
+<body ng-app="ElnokApp" ng-controller="AppCtrl" ng-cloak>
+
+    <!-- Content here -->
+    <ol>
+        <select id="mySelect" class="form-control" ng-model="selectedPres" ng-options="elnok.Name for elnok in elnoks">  </select>
+    </ol>
+    <table class="table"id="mytable" ng-if="selectedPres">
+        <tr>
+            <th rowspan="8"><img src="{{selectedPres.kep}}" alt="{{selectedPres.Name}}" width="300" height="300"></th>
+        </tr>
+        <tr>
+            <td>Született:{{selectedPres.birth}}</td>
+        </tr>
+        <tr>
+            <td>Meghalt:{{selectedPres.death}}</td>
+        </tr>
+        <tr>
+            <td>Elnöksége:{{selectedPres.presidency}}</td>
+        </tr>
+        <tr>
+            <td>Elnöki eredményei
+            <ul>
+<li ng-if="!selectedPres">{{selectedPres.good_1}}</li>
+<li ng-if="!selectedPres">{{selectedPres.good_2}}</li>
+<li ng-if="!selectedPres">{{selectedPres.good_3}}</li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Elnöki hibái
+                <ul>
+                    <li ng-if="selectedPres">{{selectedPres.bad_1}}</li>
+                    <li ng-if="selectedPres">{{selectedPres.bad_2}}</li>
+                    <li ng-if="selectedPres">{{selectedPres.bad_3}}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td ng-if="selectedPres">Egy érdekes tény:{{selectedPres.funfact}}</td>
+        </tr>
+    </table>
+ 
+    <!-- Angular Material requires Angular.js Libraries and Boostrap-->
+  
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Angular Material Library -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+    <!-- Your application bootstrap  -->
+
+    <script type="text/javascript">
+      
+        var am = angular.module('ElnokApp', ['ngMaterial']);
+        am.controller('AppCtrl', function ($scope, $http) {
+            $scope.selectedPres = null;
+            $scope.elnoks = [];
+            $scope.StillAlive = function () {
+
+            }
+            $scope.getElnok = function () {
+                return $http(
+                    {
+                        url: `api/elnokoks/`,
+                        method: "GET"
+                    }
+                    ).success(
+                    function (data) { $scope.elnoks = data }
+
+                    ).error(
+                        function(data){alert("error..")}
+                    );;
+            }
+            $scope.getElnok();
+        });
+
+    </script>
+</body>
+</html>
