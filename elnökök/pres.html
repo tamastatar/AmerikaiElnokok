@@ -8,26 +8,49 @@
         }
 
         body {
-            background: url(http://www.history.com/s3static/video-thumbnails/AETN-History_VMS/21/201/tdih-jan05-HD.jpg);
+            background: url(https://upload.wikimedia.org/wikipedia/commons/0/0c/GoldenGateBridge-001.jpg);
             background-size: cover;
             background-repeat: no-repeat;
         }
 
         table {
             color: black;
+            font-weight:bold;
+        }
+        h2{
+            color:black;
+        }
+        blockquote {
+            font-weight: bold;
+        }
+        h1 {
+            font-weight: bold;
+            text-align:center;
         }
     </style>
 </head>
 
 <body ng-app="ElnokApp" ng-controller="AppCtrl" ng-cloak>
-
+    <h1 class="h1">Az USA elnökei</h1>
+    <p>Az oldal célja bemutatni az Amerikai Egyesült Államok összes eddigi elnökét George Washingtontól egészen Donald Trumpig</p><br />
+    <blockquote class="blockquote">
+        <p class="mb-0">Mi tehát az Amerikai Egyesült Államok Képviselői, Általános Kongresszusba Összegyűlve a világ Legfelsőbb Bírájának ajánlva szándékaink tisztaságát, e Gyarmatok becsületes Népe Nevében és Felhatalmazása alapján, ünnepélyesen kinyilvánítjuk és kihirdetjük, Hogy ezek az Egyesült Gyarmatok immár természetüknek és joguknál fogva, Szabad és Független Államok; Hogy a Brit Korona iránti Alattvalói Hűség alól Felszabadultak, és hogy minden politikai kötelék, amely e gyarmatokat Nagybritánniához fűzte, megszakadt, illetőleg teljességgel meg kell szakadnia; és hogy mint Szabad és Független Államok, teljes Hatalmuk van Háborút viselni, Békét kötni, Szövetségre lépni, Kereskedelmet űzni és Mindazt tenni, amire Független Államok jogosultak. Az Isteni Gondviselés Védelmébe vetett szilárd hittel, mindnyájan kölcsönösen felajánljuk e nyilatkozat támogatására Életünket, Vagyonunkat és szent Becsületünket.</p>
+        <footer class="blockquote-footer">John Hancock <cite title="Source Title">Az amerikai
+Egyesült Államok népének
+Függetlenségi
+Nyilatkozata</cite></footer>
+    </blockquote>
     <!-- Content here -->
     <ol>
         <select id="mySelect" class="form-control" ng-model="selectedPres" ng-options="elnok.Name for elnok in elnoks">  </select>
     </ol>
+    <h2 class="h2" ng-if="selectedPres">Az Amerikai Egyesült Államok {{selectedPres.Id}}. elnöke</h2>
     <table class="table" id="mytable" ng-if="selectedPres">
         <tr>
-            <th rowspan="8"><img src="{{selectedPres.kep}}" alt="{{selectedPres.Name}}" width="300" height="300"></th>
+            <th rowspan="9"><img src="{{selectedPres.kep}}" alt="{{selectedPres.Name}}" width="300" height="300"></th>
+        </tr>
+        <tr>
+            <td>Név:{{selectedPres.Name}}</td>
         </tr>
         <tr>
             <td>Született:{{selectedPres.birth}}</td>
@@ -42,9 +65,9 @@
             <td>
                 Elnöki eredményei
                 <ul>
-                    <li ng-if="!selectedPres">{{selectedPres.good_1}}</li>
-                    <li ng-if="!selectedPres">{{selectedPres.good_2}}</li>
-                    <li ng-if="!selectedPres">{{selectedPres.good_3}}</li>
+                    <li ng-if="selectedPres">{{selectedPres.good_1}}</li>
+                    <li ng-if="selectedPres">{{selectedPres.good_2}}</li>
+                    <li ng-if="selectedPres">{{selectedPres.good_3}}</li>
                 </ul>
             </td>
         </tr>
