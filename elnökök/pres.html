@@ -2,20 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-     <style>
-         html, body {
-             height: 100%;
-         }
+    <style>
+        html, body {
+            height: 100%;
+        }
 
-         body {
-             background: url(http://www.history.com/s3static/video-thumbnails/AETN-History_VMS/21/201/tdih-jan05-HD.jpg);
-             background-size: cover;
-             background-repeat: no-repeat;
-         }
-         table{
-             color:black;
-         }
-     </style>
+        body {
+            background: url(http://www.history.com/s3static/video-thumbnails/AETN-History_VMS/21/201/tdih-jan05-HD.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        table {
+            color: black;
+        }
+    </style>
 </head>
 
 <body ng-app="ElnokApp" ng-controller="AppCtrl" ng-cloak>
@@ -24,7 +25,7 @@
     <ol>
         <select id="mySelect" class="form-control" ng-model="selectedPres" ng-options="elnok.Name for elnok in elnoks">  </select>
     </ol>
-    <table class="table"id="mytable" ng-if="selectedPres">
+    <table class="table" id="mytable" ng-if="selectedPres">
         <tr>
             <th rowspan="8"><img src="{{selectedPres.kep}}" alt="{{selectedPres.Name}}" width="300" height="300"></th>
         </tr>
@@ -38,12 +39,13 @@
             <td>Elnöksége:{{selectedPres.presidency}}</td>
         </tr>
         <tr>
-            <td>Elnöki eredményei
-            <ul>
-<li ng-if="!selectedPres">{{selectedPres.good_1}}</li>
-<li ng-if="!selectedPres">{{selectedPres.good_2}}</li>
-<li ng-if="!selectedPres">{{selectedPres.good_3}}</li>
-            </ul>
+            <td>
+                Elnöki eredményei
+                <ul>
+                    <li ng-if="!selectedPres">{{selectedPres.good_1}}</li>
+                    <li ng-if="!selectedPres">{{selectedPres.good_2}}</li>
+                    <li ng-if="!selectedPres">{{selectedPres.good_3}}</li>
+                </ul>
             </td>
         </tr>
         <tr>
@@ -60,9 +62,9 @@
             <td ng-if="selectedPres">Egy érdekes tény:{{selectedPres.funfact}}</td>
         </tr>
     </table>
- 
+
     <!-- Angular Material requires Angular.js Libraries and Boostrap-->
-  
+
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
@@ -76,7 +78,7 @@
     <!-- Your application bootstrap  -->
 
     <script type="text/javascript">
-      
+
         var am = angular.module('ElnokApp', ['ngMaterial']);
         am.controller('AppCtrl', function ($scope, $http) {
             $scope.selectedPres = null;

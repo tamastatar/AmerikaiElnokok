@@ -1,7 +1,14 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: url(http://clipart-library.com/images/6iy5EXKnT.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+html, body {
+    height: 100%;
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

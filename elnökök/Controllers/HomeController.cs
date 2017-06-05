@@ -10,21 +10,33 @@ namespace elnökök.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Login obj = new Login();
+            return View(obj);
         }
-
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Index(Login objuserlogin)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var display = Userloginvalues().Where(m => m.UserName == objuserlogin.UserName && m.UserPassword == objuserlogin.UserPassword).FirstOrDefault();
+            if (display != null)
+            {
+                ViewBag.Status = "CORRECT UserName and Password";
+                Response.Redirect("~/pres.html");
+            }
+            else
+            {
+                ViewBag.Status = "INCORRECT UserName or Password";
+            }
+            return View(objuserlogin);
         }
-
-        public ActionResult Contact()
+        public List<Login> Userloginvalues()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            List<Login> objModel = new List<Login>();
+            objModel.Add(new Login { UserName = "george", UserPassword = "pres1" });
+            objModel.Add(new Login { UserName = "donald", UserPassword = "pres45" });
+            objModel.Add(new Login { UserName = "jamesmon", UserPassword = "pres5" });
+            objModel.Add(new Login { UserName = "lbj", UserPassword = "pres36" });
+            objModel.Add(new Login { UserName = "jfk", UserPassword = "pres35" });
+            return objModel;
         }
     }
 }
