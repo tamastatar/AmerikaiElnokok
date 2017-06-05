@@ -19,12 +19,13 @@
         return true;
     }
 </script>
-<h3>Kérem jelentkezzen be </h3>
+<h3 class="h2">Kérem jelentkezzen be </h3>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 @using (Html.BeginForm("Index", "Home"))
 {
-    <table width="40%" cellpadding="1" cellspacing="5" class="table-striped">
+    <table width="40%" cellpadding="10" cellspacing="5" class="table-striped" style=" margin-top:100px; 
+    margin-left:300px;">
         <tr>
             <td colspan="2" style="color:#f00;font-size:larger">@ViewBag.Status</td>
         </tr>
@@ -37,8 +38,8 @@
             <td>@Html.PasswordFor(m => m.UserPassword, new { @style = "width:200px", @id = "txtuserpassword" })</td>
         </tr>
         <tr>
-            <td colspan="2">
-                <input type="submit" value="Login" title="login" onclick=" display();" />
+            <td colspan="2" align="center">
+                <input class="form-control" type="submit" value="Login" title="login" onclick=" display();" />
             </td>
         </tr>
     </table>
